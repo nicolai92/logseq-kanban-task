@@ -1,10 +1,10 @@
 {
-  "name": "logseq-kanban",
-  "version": "1.0.0",
+  "name": "logseq-kanban-task",
+  "version": "1.4.0",
   "description": "Kanban board showing all TODO / DOING / DONE / WAITING tasks across your graph",
   "main": "index.html",
-  "author": "logseq-kanban",
-  "license": "MIT",
+  "author": "nicolai92",
+  "license": "AGPL-3.0",
   "logseq": {
     "id": "logseq-kanban",
     "title": "Kanban Board",

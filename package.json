@@ -6,8 +6,8 @@
   "author": "nicolai92",
   "license": "AGPL-3.0",
   "logseq": {
-    "id": "logseq-kanban",
-    "title": "Kanban Board",
+    "id": "logseq-kanban-task",
+    "title": "Kanban Task Board",
     "icon": "assets/icon.svg"
   }
 }

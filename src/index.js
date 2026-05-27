@@ -185,6 +185,7 @@ async function fetchTasks() {
       seen.add(uuidStr);
       groups[matched].push({
         uuid: uuidStr, text, priority, assignee, scheduled,
+        marker: matched,
         pageName,
         displayPage: journalDay ? formatDay(journalDay) : pageName,
         journalDay:  journalDay || 0,
@@ -219,6 +220,7 @@ async function fetchTasks() {
             priority: parsePriority(block.content),
             assignee: parseAssignee(block.content),
             scheduled: parseScheduled(block.content),
+            marker: marker,
             pageName: pn, displayPage: pn, journalDay: 0,
           });
         }
@@ -828,7 +830,7 @@ function buildCard(task, colColor) {
       '<div class="kb-card-meta">',
         '<span class="kb-card-page-icon">', iconPage(), '</span>',
         '<span class="kb-card-page" title="', esc(task.pageName), '">', esc(task.displayPage||task.pageName), '</span>',
-        buildScheduledChip(task.scheduled),
+        buildScheduledChip(task.marker !== "DONE" ? task.scheduled : null),
         buildAssigneeChip(task.assignee),
       '</div>',
     '</div>',
@@ -1028,7 +1030,8 @@ async function moveCard(uuid, newMarker) {
   Object.keys(lastTasks).forEach(function(m){ lastTasks[m].forEach(function(t){ if(t.uuid===uuid){task=t;oldMarker=m;} }); });
   if (!task||oldMarker===newMarker) return;
   lastTasks[oldMarker]=lastTasks[oldMarker].filter(function(t){return t.uuid!==uuid;});
-  lastTasks[newMarker].unshift(Object.assign({},task));
+  const movedTask = Object.assign({}, task, { marker: newMarker });
+  lastTasks[newMarker].unshift(movedTask);
   rerenderBoard();
   const ok=await changeMarker(uuid,newMarker);
   if (!ok){ lastTasks[newMarker]=lastTasks[newMarker].filter(function(t){return t.uuid!==uuid;}); lastTasks[oldMarker].unshift(task); rerenderBoard(); logseq.UI.showMsg("Failed to update task","error"); }
@@ -1326,7 +1329,7 @@ function attachBoardListeners(panel) {
           const today=new Date();
           const jd=today.getFullYear()*10000+(today.getMonth()+1)*100+today.getDate();
           if(!lastTasks[state]) lastTasks[state]=[];
-          lastTasks[state].unshift({uuid:block.uuid,text,priority,assignee,pageName:block.page?(block.page.originalName||block.page.name||""):"",displayPage:formatDay(jd),journalDay:jd});
+          lastTasks[state].unshift({uuid:block.uuid,text,priority,assignee,scheduled:null,marker:state,pageName:block.page?(block.page.originalName||block.page.name||""):"",displayPage:formatDay(jd),journalDay:jd});
           rerenderBoard();
           logseq.UI.showMsg("Task added","success");
         } else { btn.disabled=false; btn.textContent="Add"; }

@@ -1,16 +1,8 @@
 /**
- * Logseq Kanban Board Plugin  v1.4.0
+ * Logseq Kanban Board Plugin  v1.5.1
  * ------------------------------------
  * TODO | DOING | WAITING | DONE
  *
- * New in v1.4:
- *  - Robust date formatting: reads preferredDateFormat, handles all locale
- *    variants (dd.MM.yyyy, EEE/eee day-name capitalisation, etc.)
- *  - Progress bar in header: active (Todo+Doing) vs Done
- *  - Assignees: parse @name / assignee::Name from blocks, show on cards,
- *    set via add-form and context menu
- *  - Assignee filter: All / Mine / Others
- *  - "Request status" action: creates a follow-up block mentioning @assignee
  */
 
 // ---------------------------------------------------------------------------
@@ -122,7 +114,7 @@ async function getTodayPageName() {
 // ---------------------------------------------------------------------------
 
 function parseAssignee(content) {
-  // Prefer explicit property: assignee::[[First Lastname]] or assignee::Name
+  // Prefer explicit property: assignee::[[Name]] or assignee::Name
   const prop = content.match(/assignee::\s*(\[\[[^\]]+\]\]|[^\s,\]#\n\[]+)/i);
   if (prop) return prop[1].trim();
   // Fall back to first @mention
@@ -857,7 +849,7 @@ function buildAddForm(state) {
       '<div class="kb-add-assignee-row">',
         '<span style="display:flex;align-items:center;gap:4px;font-size:10px;font-weight:700;opacity:.5;white-space:nowrap;">', iconUser(11), 'Assignee</span>',
         '<div class="kb-add-assignee-wrap">',
-          '<input class="kb-add-assignee-input" placeholder="[[First Lastname]] or type to search..." autocomplete="off"/>',
+          '<input class="kb-add-assignee-input" placeholder="Search..." autocomplete="off"/>',
           // Dropdown injected here by JS
         '</div>',
       '</div>',
@@ -921,7 +913,7 @@ function buildPanelHTML(tasks, loading) {
     '<div class="kb-board" id="kb-board">',
       COLUMNS.map(function(col){ return buildColumn(col, shown[col.state]||[], loading); }).join(""),
     '</div>',
-    '<div class="kb-footer"><span>Logseq Kanban v1.4.0</span></div>',
+    '<div class="kb-footer"><span>Logseq Kanban Board v1.5.1</span></div>',
   ].join("");
 }
 

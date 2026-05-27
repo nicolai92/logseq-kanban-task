@@ -1,9 +1,17 @@
-# Kanban Board — Logseq Plugin
+# Logseq Kanban Task Board
 
 A floating kanban panel that shows all your tasks across four columns:
-**To Do · Doing · Waiting · Done**
 
-Click any card to jump directly to the block where the task was created.
+- TODO
+- DOING
+- WAITING
+- DONE
+
+Click any card to instantly navigate to the original Logseq block where the task was created. Use drag-and-drop or the context menu to seamlessly update a task’s status or priority.
+
+## Screenshot
+
+![Screenshot](./assets/screenshot.png)
 
 ## Installation
 
@@ -17,20 +25,14 @@ Click any card to jump directly to the block where the task was created.
 - Click **Refresh** (or the button) to reload tasks from your graph.
 - Click any **task card** to navigate to that block and close the panel.
 - Click anywhere **outside** the panel to close it.
-- Type `/Kanban Board` in any block to open from the slash command menu.
+- Use drag-and-drop or context-menu to update a task’s status or priority.
 
 ## How tasks are found
 
-The plugin queries all blocks in your graph that have a `TODO`, `DOING`,
-`DONE`, or `WAITING` marker and groups them by state. The query uses
-Logseq's built-in Datascript API — no external dependencies, no file
-system access.
-
-Tasks are sorted newest-first within each column.
+The plugin queries all blocks in your graph that have a `TODO`, `DOING`, `DONE`, or `WAITING` marker and groups them by state. The query uses Logseq’s built-in Datascript API - no external dependencies, no file system access.
 
 ## Notes
 
 - Only explicit Logseq task markers are matched (not plain text).
 - Page references (`[[PageName]]`) in task text are unwrapped for readability.
-- Tasks longer than 120 characters are truncated on the card; the full text
-  is visible when you navigate to the block.
+- Tasks longer than 120 characters are truncated on the card; the full text is visible when you navigate to the block.

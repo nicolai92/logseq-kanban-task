@@ -17,12 +17,12 @@ Click any card to instantly navigate to the original Logseq block where the task
 
 1. Unzip the archive.
 2. In Logseq: **Settings → Plugins → enable Developer mode**.
-3. Click **Load unpacked plugin** and select the `logseq-kanban` folder.
+3. Click **Load unpacked plugin** and select the `logseq-kanban-task` folder.
 
 ## Usage
 
 - Click the **kanban icon** in the Logseq toolbar to open/close the board.
-- Click **Refresh** (or the button) to reload tasks from your graph.
+- Click the **Refresh** button to reload tasks from your graph.
 - Click any **task card** to navigate to that block and close the panel.
 - Click anywhere **outside** the panel to close it.
 - Use drag-and-drop or context-menu to update a task’s status or priority.

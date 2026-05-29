@@ -1453,7 +1453,7 @@ function main(){
     if(menu&&menu.contains(e.target)) return;
     if(panel&&!panel.contains(e.target)&&!e.target.closest(".kb-toolbar-btn")) destroyPanel();
   });
-  console.info("[Kanban] v1.4.0 loaded.");
+  console.info("[Kanban] v1.5.1 loaded.");
 }
 
 logseq.ready(main).catch(console.error);

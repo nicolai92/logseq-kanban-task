@@ -1,5 +1,5 @@
 /**
- * Logseq Kanban Board Plugin  v1.5.1
+ * Logseq Kanban Board Plugin  v1.5.2
  * ------------------------------------
  * TODO | DOING | WAITING | DONE
  *
@@ -913,7 +913,7 @@ function buildPanelHTML(tasks, loading) {
     '<div class="kb-board" id="kb-board">',
       COLUMNS.map(function(col){ return buildColumn(col, shown[col.state]||[], loading); }).join(""),
     '</div>',
-    '<div class="kb-footer"><span>Logseq Kanban Board v1.5.1</span></div>',
+    '<div class="kb-footer"><span>Logseq Kanban Board v1.5.2</span></div>',
   ].join("");
 }
 
@@ -943,7 +943,7 @@ function showContextMenu(x, y, uuid, currentMarker, currentPriority, currentAssi
   });
 
   rows.push('<div class="kb-ctx-sep"></div><div class="kb-ctx-section">Assignee</div>');
-  rows.push('<div style="position:relative;margin:4px 12px 2px;"><input class="kb-ctx-assignee-input" style="margin:0;width:100%;box-sizing:border-box;" placeholder="[[First Lastname]]" value="'+esc(currentAssignee||"")+'"/></div>');
+  rows.push('<div style="position:relative;margin:4px 12px 2px;"><input class="kb-ctx-assignee-input" style="margin:0;width:100%;box-sizing:border-box;" placeholder="Search..." value="'+esc(currentAssignee||"")+'"/></div>');
   rows.push('<div class="kb-ctx-item" data-action="ctx-set-assignee" data-uuid="'+esc(uuid)+'">' + iconUser(12) + ' Set assignee</div>');
 
   rows.push('<div class="kb-ctx-sep"></div>');
@@ -1453,7 +1453,7 @@ function main(){
     if(menu&&menu.contains(e.target)) return;
     if(panel&&!panel.contains(e.target)&&!e.target.closest(".kb-toolbar-btn")) destroyPanel();
   });
-  console.info("[Kanban] v1.5.1 loaded.");
+  console.info("[Kanban] v1.5.2 loaded.");
 }
 
 logseq.ready(main).catch(console.error);
